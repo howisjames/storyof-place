@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.114.1">
+    
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preload" href="/css/page.css" as="style">
+    <link rel="preload" href="/js/jquery-3.3.1.min.js" as="script">
+    <link rel="preload" href="/js/bootstrap.bundle.min.js" as="script">
+    <link rel="preload" href="/css/leaflet.bundle.css" as="style">
+    <link rel="preload" href="/js/leaflet.bundle.min.js" as="script">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A Leaflet based store locator rendered as a static site by hugo.">
+<meta name="author" content="ttntm">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#ffffff">
+<base href="">
+<title>Hugo&#43;Leaflet Store Locator</title>
+<link rel="stylesheet" href="/css/page.css">
+<link rel="stylesheet" href="/css/leaflet.bundle.css">
+    
+</head>
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 py-3 mx-auto flex-column">
+        
+            <header class="masthead px-5 mb-auto">
+    <div class="inner">
+        <h1 class="h4 masthead-brand">Hugo&#43;Leaflet Store Locator</h1>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="https://github.com/ttntm/hugo-leaflet-store-locator">View on GitHub</a>
+            <a class="nav-link" href="https://twitter.com/thet0m" target="_blank">@thet0m</a>
+        </nav>
+    </div>
+</header>
+
+        
+        <main role="main" class="inner cover">
+            
+    
+    <div class="container">
+    
+        <div class="row map-border my-5">
+            <div class="col-12 col-md-5 col-lg-4 order-2 order-md-1 px-md-0">
+                
+                <div class="p-4">
+                    <div class="input-group shadow-sm mt-3">
+                        <input class="form-control border-0" type="text" id="storefinder" onkeyup="findStore();" placeholder="Area code, i.e. '1010'">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary bg-white text-secondary border-0 py-0" type="submit">Find</button>
+                        </div>
+                    </div>
+                    <p id="result" class="small text-center mt-3 mb-0"></p>
+                </div>
+                
+                <div class="shop-container d-flex flex-column flex-nowrap align-content-start px-md-0">
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Schwedenplatz" data-add="Rotenturmstraße 29" data-plz="1010 Vienna" data-cty="Austria" data-lat="48.211787" data-lon="16.375875">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Schwedenplatz</h5>
+                                <p class="small mt-1 mb-0">Rotenturmstraße 29<br>1010 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Universität" data-add="Universitätsring 12" data-plz="1010 Vienna" data-cty="Austria" data-lat="48.213414" data-lon="16.362011">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Universität</h5>
+                                <p class="small mt-1 mb-0">Universitätsring 12<br>1010 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Singerstraße" data-add="Singerstraße 4" data-plz="1010 Vienna" data-cty="Austria" data-lat="48.207648" data-lon="16.372437">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Singerstraße</h5>
+                                <p class="small mt-1 mb-0">Singerstraße 4<br>1010 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Schwarzenbergplatz" data-add="Schwarzenbergplatz 17" data-plz="1010 Vienna" data-cty="Austria" data-lat="48.201102" data-lon="16.374146">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Schwarzenbergplatz</h5>
+                                <p class="small mt-1 mb-0">Schwarzenbergplatz 17<br>1010 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Karlsplatz" data-add="Nr.1, U-Bahnpassage Lokal, Karlsplatz" data-plz="1010 Vienna" data-cty="Austria" data-lat="48.200972" data-lon="16.368528">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Karlsplatz</h5>
+                                <p class="small mt-1 mb-0">Nr.1, U-Bahnpassage Lokal, Karlsplatz<br>1010 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Johannesgasse" data-add="Johannesgasse 3" data-plz="1010 Vienna" data-cty="Austria" data-lat="48.205252" data-lon="16.371649">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Johannesgasse</h5>
+                                <p class="small mt-1 mb-0">Johannesgasse 3<br>1010 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Messe Vienna" data-add="Ausstellungsstraße 44A" data-plz="1020 Vienna" data-cty="Austria" data-lat="48.217461" data-lon="16.405981">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Messe Vienna</h5>
+                                <p class="small mt-1 mb-0">Ausstellungsstraße 44A<br>1020 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Praterstern" data-add="Praterstern 3990/2" data-plz="1020 Vienna" data-cty="Austria" data-lat="48.217836" data-lon="16.392217">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Praterstern</h5>
+                                <p class="small mt-1 mb-0">Praterstern 3990/2<br>1020 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Handelskai" data-add="Handelskai 130" data-plz="1020 Vienna" data-cty="Austria" data-lat="48.233456" data-lon="16.395025">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Handelskai</h5>
+                                <p class="small mt-1 mb-0">Handelskai 130<br>1020 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Taborstraße" data-add="Taborstraße 39" data-plz="1020 Vienna" data-cty="Austria" data-lat="48.219235" data-lon="16.380754">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Taborstraße</h5>
+                                <p class="small mt-1 mb-0">Taborstraße 39<br>1020 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Wien Mitte" data-add="Landstraßer Hauptstraße 1B" data-plz="1030 Vienna" data-cty="Austria" data-lat="48.206481" data-lon="16.384397">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Wien Mitte</h5>
+                                <p class="small mt-1 mb-0">Landstraßer Hauptstraße 1B<br>1030 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Südtiroler Platz" data-add="Unterfahrung Südtiroler Platz B" data-plz="1040 Vienna" data-cty="Austria" data-lat="48.185995" data-lon="16.374703">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Südtiroler Platz</h5>
+                                <p class="small mt-1 mb-0">Unterfahrung Südtiroler Platz B<br>1040 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Pilgrambrücke" data-add="Pilgrambrücke 1" data-plz="1050 Vienna" data-cty="Austria" data-lat="48.192794" data-lon="16.354584">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Pilgrambrücke</h5>
+                                <p class="small mt-1 mb-0">Pilgrambrücke 1<br>1050 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Margaretengürtel" data-add="Margaretengürtel 45" data-plz="1050 Vienna" data-cty="Austria" data-lat="48.179553" data-lon="16.351150">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Margaretengürtel</h5>
+                                <p class="small mt-1 mb-0">Margaretengürtel 45<br>1050 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Mariahilfer Straße 1" data-add="Mariahilfer Straße 22-24" data-plz="1070 Vienna" data-cty="Austria" data-lat="48.200860" data-lon="16.357434">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Mariahilfer Straße 1</h5>
+                                <p class="small mt-1 mb-0">Mariahilfer Straße 22-24<br>1070 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Mariahilfer Straße 2" data-add="Mariahilfer Straße 85-87" data-plz="1070 Vienna" data-cty="Austria" data-lat="48.197566" data-lon="16.348327">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Mariahilfer Straße 2</h5>
+                                <p class="small mt-1 mb-0">Mariahilfer Straße 85-87<br>1070 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s FJB" data-add="Julius-Tandler-Platz 3" data-plz="1090 Vienna" data-cty="Austria" data-lat="48.226074" data-lon="16.361011">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s FJB</h5>
+                                <p class="small mt-1 mb-0">Julius-Tandler-Platz 3<br>1090 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Hernalser Gürtel" data-add="Stadtbahnbögen 82a-87" data-plz="1090 Vienna" data-cty="Austria" data-lat="48.216086" data-lon="16.341460">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Hernalser Gürtel</h5>
+                                <p class="small mt-1 mb-0">Stadtbahnbögen 82a-87<br>1090 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Triester Straße" data-add="Triester Straße 70" data-plz="1100 Vienna" data-cty="Austria" data-lat="48.165230" data-lon="16.346285">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Triester Straße</h5>
+                                <p class="small mt-1 mb-0">Triester Straße 70<br>1100 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Verteilerkreis" data-add="Ludwig-von-Höhnel-Gasse 15" data-plz="1100 Vienna" data-cty="Austria" data-lat="48.159443" data-lon="16.387097">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Verteilerkreis</h5>
+                                <p class="small mt-1 mb-0">Ludwig-von-Höhnel-Gasse 15<br>1100 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Favoritenstraße 1" data-add="Favoritenstraße 130" data-plz="1100 Vienna" data-cty="Austria" data-lat="48.175068" data-lon="16.377686">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Favoritenstraße 1</h5>
+                                <p class="small mt-1 mb-0">Favoritenstraße 130<br>1100 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Favoritenstraße 2" data-add="Favoritenstraße 89" data-plz="1100 Vienna" data-cty="Austria" data-lat="48.179838" data-lon="16.376108">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Favoritenstraße 2</h5>
+                                <p class="small mt-1 mb-0">Favoritenstraße 89<br>1100 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Hauptbahnhof" data-add="EG, TOP 151" data-plz="1100 Vienna" data-cty="Austria" data-lat="48.185476" data-lon="16.375235">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Hauptbahnhof</h5>
+                                <p class="small mt-1 mb-0">EG, TOP 151<br>1100 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Meidling" data-add="Wilhelmstraße 64" data-plz="1120 Vienna" data-cty="Austria" data-lat="48.174810" data-lon="16.331071">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Meidling</h5>
+                                <p class="small mt-1 mb-0">Wilhelmstraße 64<br>1120 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Hietzinger Kai" data-add="Hietzinger Kai 137" data-plz="1130 Vienna" data-cty="Austria" data-lat="48.191507" data-lon="16.279168">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Hietzinger Kai</h5>
+                                <p class="small mt-1 mb-0">Hietzinger Kai 137<br>1130 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Hadikgasse 1" data-add="Hadikgasse 62" data-plz="1140 Vienna" data-cty="Austria" data-lat="48.188406" data-lon="16.303783">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Hadikgasse 1</h5>
+                                <p class="small mt-1 mb-0">Hadikgasse 62<br>1140 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Hadikgasse 2" data-add="Hadikgasse 254" data-plz="1140 Vienna" data-cty="Austria" data-lat="48.192890" data-lon="16.276212">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Hadikgasse 2</h5>
+                                <p class="small mt-1 mb-0">Hadikgasse 254<br>1140 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Westbahnhof" data-add="Europaplatz 2 OB 1.26" data-plz="1150 Vienna" data-cty="Austria" data-lat="48.196285" data-lon="16.338262">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Westbahnhof</h5>
+                                <p class="small mt-1 mb-0">Europaplatz 2 OB 1.26<br>1150 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Johnstraße" data-add="Hütteldorfer Straße 81B/4" data-plz="1150 Vienna" data-cty="Austria" data-lat="48.198866" data-lon="16.319411">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Johnstraße</h5>
+                                <p class="small mt-1 mb-0">Hütteldorfer Straße 81B/4<br>1150 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Thaliastraße" data-add="Thaliastraße 17" data-plz="1160 Vienna" data-cty="Austria" data-lat="48.209025" data-lon="16.335059">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Thaliastraße</h5>
+                                <p class="small mt-1 mb-0">Thaliastraße 17<br>1160 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Heiligenstadt" data-add="Heiligenstädter Straße 68" data-plz="1190 Vienna" data-cty="Austria" data-lat="48.243213" data-lon="16.361738">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Heiligenstadt</h5>
+                                <p class="small mt-1 mb-0">Heiligenstädter Straße 68<br>1190 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Grinzing" data-add="Grinzinger Allee 3" data-plz="1190 Vienna" data-cty="Austria" data-lat="48.246301" data-lon="16.342273">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Grinzing</h5>
+                                <p class="small mt-1 mb-0">Grinzinger Allee 3<br>1190 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Rivergate" data-add="Rivergate, Handelskai 92" data-plz="1200 Vienna" data-cty="Austria" data-lat="48.241946" data-lon="16.384423">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Rivergate</h5>
+                                <p class="small mt-1 mb-0">Rivergate, Handelskai 92<br>1200 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Floridsdorf" data-add="Schloßhofer Straße 13-15" data-plz="1210 Vienna" data-cty="Austria" data-lat="48.257528" data-lon="16.400514">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Floridsdorf</h5>
+                                <p class="small mt-1 mb-0">Schloßhofer Straße 13-15<br>1210 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Leopoldau" data-add="Leopoldauer Straße 49" data-plz="1210 Vienna" data-cty="Austria" data-lat="48.260205" data-lon="16.411159">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Leopoldau</h5>
+                                <p class="small mt-1 mb-0">Leopoldauer Straße 49<br>1210 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Brünnerstraße" data-add="Brünnerstraße 170" data-plz="1210 Vienna" data-cty="Austria" data-lat="48.280578" data-lon="16.411830">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Brünnerstraße</h5>
+                                <p class="small mt-1 mb-0">Brünnerstraße 170<br>1210 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Donaustadtstraße" data-add="Donaustadtstraße 49" data-plz="1220 Vienna" data-cty="Austria" data-lat="48.220003" data-lon="16.444164">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Donaustadtstraße</h5>
+                                <p class="small mt-1 mb-0">Donaustadtstraße 49<br>1220 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Wagramer Straße" data-add="Wagramer Straße 54" data-plz="1220 Vienna" data-cty="Austria" data-lat="48.239411" data-lon="16.431121">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Wagramer Straße</h5>
+                                <p class="small mt-1 mb-0">Wagramer Straße 54<br>1220 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Donauzentrum" data-add="Wagramer Straße 81-83, TOP 320" data-plz="1220 Vienna" data-cty="Austria" data-lat="48.242760" data-lon="16.435368">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Donauzentrum</h5>
+                                <p class="small mt-1 mb-0">Wagramer Straße 81-83, TOP 320<br>1220 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Breitenlee" data-add="Breitenleer Str. S2" data-plz="1220 Vienna" data-cty="Austria" data-lat="48.250124" data-lon="16.470861">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Breitenlee</h5>
+                                <p class="small mt-1 mb-0">Breitenleer Str. S2<br>1220 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                    
+                        <div class="sItem flex-grow-0 px-0 py-2 p-md-2" data-name="McDonald&#39;s Rautenweg" data-add="Rautenweg 2" data-plz="1220 Vienna" data-cty="Austria" data-lat="48.264109" data-lon="16.456108">
+                            <div class="sItem--offline rounded-lg shadow-sm px-3 py-2">
+                                <h5 class="h6 mb-0">McDonald&#39;s Rautenweg</h5>
+                                <p class="small mt-1 mb-0">Rautenweg 2<br>1220 Vienna, Austria</p>
+                            </div>
+                        </div>
+                    
+                
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-7 col-lg-8 map-container order-1 order-md-2 px-0">
+                <div id="map" style="width:100%;height:100%;"></div>
+            </div>
+        </div>
+    </div>
+
+        </main>
+        
+            <footer class="mastfoot mt-auto">
+    <div class="inner">
+        <p>Hugo/Leaflet Store Locator demo by <a href="https://ttntm.me">ttntm</a> - <a href="https://ttntm.me/blog/store-locator-leaflet-hugo/">https://ttntm.me/blog/store-locator-leaflet-hugo/</a></p>
+        <p class="small">Based on cover template for Bootstrap, by @mdo.</p>
+    </div>
+</footer>
+        
+    </div>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/leaflet.bundle.min.js"></script>
+<script>
+    
+    const items = $('.sItem'); 
+    const item = $('.sItem--offline'); 
+    const startZoom = 11; 
+    const startLat = 48.208726;
+    const startLon = 16.372644;
+    
+    var mymap = L.map('map', {scrollWheelZoom: false}).setView([startLat, startLon], startZoom);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors | <a href="javascript:resetMap();">Reset map</a>'
+    }).addTo(mymap);
+
+    
+    L.control.locate().addTo(mymap);
+
+    
+    mymap.on('click', () => { mymap.scrollWheelZoom.enable();});
+    mymap.on('mouseout', () => { mymap.scrollWheelZoom.disable();});
+
+    
+    var markers = L.markerClusterGroup();
+
+    
+    for(let i = 0; i < items.length; i++) {
+        let iLat = items[i].getAttribute('data-lat');
+        let iLon = items[i].getAttribute('data-lon');
+
+        if(!isEmpty(iLat) | !isEmpty(iLon)) {
+            
+            let name = items[i].getAttribute('data-name');
+            let ad = items[i].getAttribute('data-add');
+            let plz = items[i].getAttribute('data-plz');
+            
+            markers.addLayer(L.marker([iLat,iLon],{key:iLat+'__'+iLon}).bindPopup("<b>" + name + "</b>" + "<br>" + ad + ", " + plz)); 
+            
+        }
+    }
+
+    
+    mymap.addLayer(markers);
+
+    
+    item.click(function(){
+        let ct = $(this);
+        let pt = ct.parent(); 
+        let pLat = pt.attr('data-lat');
+        let pLon = pt.attr('data-lon');
+        let id = pLat + '__' + pLon;
+
+        if(!isEmpty(pLat) | !isEmpty(pLon)) {
+            
+            markers.eachLayer(function(layer) {
+                if(layer.options.key === id) {
+                    mymap.setView([pLat,pLon], 19); 
+                    layer.openPopup()
+                }
+            });
+        }
+    });
+
+    
+    function resetMap() {
+        mymap.closePopup();
+        mymap.setView([startLat, startLon], startZoom);
+    }
+
+    
+    function findStore() {
+        const searchInput = $('#storefinder');
+        const hidden = 'sItem--hidden';
+        const result = $('#result');
+
+        let filter = searchInput.val().toUpperCase();
+        let count = 0; 
+
+        for (let i = 0; i < items.length; i++) {
+            let plz = items[i].getAttribute('data-plz').toUpperCase();
+            let cty = items[i].getAttribute('data-cty').toUpperCase();
+            if (plz.toUpperCase().indexOf(filter) > -1) { 
+                items[i].classList.remove(hidden);
+                count = count + 1;
+            } else if (cty.toUpperCase().indexOf(filter) > -1) { 
+                items[i].classList.remove(hidden);
+                count = count + 1;
+            } else { 
+                items[i].classList.add(hidden);
+            }
+        }
+        result.html(count + ' Shops - <a href="javascript:clearSearch();">Reset</a>'); 
+    }
+
+    
+    function clearSearch() {
+        document.getElementById('storefinder').value = '';
+        findStore();
+        resetMap();
+    }
+
+    
+    function isEmpty(str) {
+        return (!str || 0 === str.length);
+    }
+</script>
+</body>
+</html>
