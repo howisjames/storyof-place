@@ -1,5 +1,5 @@
 # SETUP
-baseurl = "https://storyof.place"
+baseurl = "/"
 publishdir = "public"
 canonifyUrls = "true"
 disableKinds = ["RSS","taxonomy","taxonomyTerm","sitemap"]
