@@ -12,3 +12,24 @@ Requires Hugo to build/run the site; after cloning/downloading it, you can eithe
 
 ---
 
+# James' Notesw on this Fork
+
+## Data Source
+
+Data is a json file contained in /data/ and named stores.json
+Data fields with examples are:
+
+    "shopName": "McDonald's Messe Vienna",
+    "shopAddress": "Ausstellungsstraße 44A",
+    "shopPLZ": "1020 Vienna",
+    "shopCountry": "Austria",
+    "shopLatitude": "48.217461",
+    "shopLongitude": "16.405981",
+    "shopActive": true
+	
+The index file loads the contents into a variable with the following line
+"{{ $shops := .Site.Data.stores }}"
+It provides a search field and determines sort order of the list.
+
+A partial named js.html contains the script which creates and populates the map.
+Numerous Leaflet settings can be adjusted here.
